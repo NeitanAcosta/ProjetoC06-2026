@@ -1,15 +1,22 @@
 public class IngressoInteira extends Ingresso implements Validavel {
-    
+
     public IngressoInteira() {
+        super();
     }
-    
-    @Override
-    public double calcularValor() {
-        return 0.0;
+
+    public IngressoInteira(String id, double valorBase, String assento) {
+        super(id, valorBase, assento);
     }
-    
+
     @Override
     public boolean validarEntrada() {
-        return false;
+        System.out.println("Entrada Liberada");
+        return true;
     }
+
+    @Override
+    public double calcularValorFinal() {
+        return getValorBase();
+    }
+
 }

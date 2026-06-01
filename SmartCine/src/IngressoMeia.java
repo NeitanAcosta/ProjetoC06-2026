@@ -1,15 +1,22 @@
 public class IngressoMeia extends Ingresso implements Validavel {
-    
+
     public IngressoMeia() {
+        super();
     }
-    
-    @Override
-    public double calcularValor() {
-        return 0.0;
+
+    public IngressoMeia(String id, double valorBase, String assento) {
+        super(id, valorBase, assento);
     }
-    
+
     @Override
     public boolean validarEntrada() {
-        return false;
+        System.out.println("Apresente a carteirinha de estudante");
+        return true;
     }
+
+    @Override
+    public double calcularValorFinal() {
+        return getValorBase() * 0.5;
+    }
+
 }
