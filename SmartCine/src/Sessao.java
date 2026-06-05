@@ -1,36 +1,38 @@
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
 
 public class Sessao {
     private Filme filme;
     private String horario;
     private int idSala;
-    private Assento[][] sala;
+    private Map<String, Assento> sala;
 
     public Sessao(Filme filme, String horario, int idSala) {
         this.filme = filme;
         this.horario = horario;
         this.idSala = idSala;
 
-        sala = new Assento[20][20];
+        sala = new HashMap<>();
         for(int i=0; i<20; i++){
             for(int j=0; j<20; j++){
-                sala[i][j] = new Assento(i, j);
+                Assento assento = new Assento(i, j);
+                sala.put(assento.getId(), assento);
             }
         }
     }
     
-    public void reservarAssento(String idAssento) throws AssentoIndisponivelException {
-        for(int i=0; i<20; i++){
-            for(int j=0; j<20; j++){
-                if(Objects.equals(sala[i][j].getId(), idAssento) && !sala[i][j].isOcupado()){
-                    sala[i][j].setOcupado(true);
-                    return;
-                }
-            }
+    public void reservarAssento(String idAssento, int idade) throws AssentoIndisponivelException {
+        Assento assento = sala.get(idAssento);
+
+        if(assento == null){
+            throw new AssentoIndisponivelException("Assento não encontrado");
         }
-        throw new AssentoIndisponivelException("Assento não encontrado ou já ocupado");
+        if(assento.isOcupado()){
+            throw new AssentoIndisponivelException("Assento já está ocupado");
+        }
+        if(idade >= filme.getClassificacaoIndicativa()){
+            assento.setOcupado(true);
+        } else {
+            throw new AssentoIndisponivelException("Sua idade não condiz com a classificação indicativa para assistir "+filme.getTitulo());
+        }
     }
 }
