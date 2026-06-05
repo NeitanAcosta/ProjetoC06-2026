@@ -1,3 +1,5 @@
+package br.inatel;
+
 import java.util.HashMap;
 import java.util.Map;
 import br.inatel.com.smartcine.exception.AssentoIndisponivelException;
