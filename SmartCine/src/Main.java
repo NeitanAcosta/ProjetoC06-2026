@@ -4,7 +4,7 @@ import br.inatel.comp.smartcine.thread.TerminalVendasThread;
 public class Main {
     public static void main(String[] args) {
 
-        // ── 1. CADASTRO DE FILMES ─────────────────────────────────────────
+        // cadastro dos filmes
         Filme filme1 = new Filme("Interestelar", 169.0f, 12);
         Filme filme2 = new Filme("A Quiet Place", 90.0f, 16);
 
@@ -13,7 +13,7 @@ public class Main {
         System.out.println("  - " + filme1.getTitulo() + " | " + filme1.getDuracao() + " min | Classificação: " + filme1.getClassificacaoIndicativa() + "+");
         System.out.println("  - " + filme2.getTitulo() + " | " + filme2.getDuracao() + " min | Classificação: " + filme2.getClassificacaoIndicativa() + "+\n");
 
-        // ── 2. CRIAÇÃO DAS SESSÕES ────────────────────────────────────────
+        // criando as sessões
         Sessao sessao1 = new Sessao(filme1, "14:00", 1);
         Sessao sessao2 = new Sessao(filme2, "17:30", 2);
 
@@ -21,8 +21,7 @@ public class Main {
         System.out.println("  - Sala 1: " + filme1.getTitulo() + " às 14:00");
         System.out.println("  - Sala 2: " + filme2.getTitulo() + " às 17:30\n");
 
-        // ── 3. SIMULAÇÃO DE CONCORRÊNCIA (o grande diferencial!) ──────────
-        // Dois terminais tentando comprar o MESMO assento ao mesmo tempo
+        // simulando o caso onde 2 pessoas (terminais, chamei assim pra ficar mais facil) estão tentando comprar ao mesmo tempo
         System.out.println("--- Simulando concorrência: 2 terminais pelo assento C5 ---\n");
 
         TerminalVendasThread terminal1 = new TerminalVendasThread("Terminal-1", sessao1, "C5", 20, "INTEIRA");
@@ -42,7 +41,7 @@ public class Main {
             System.err.println("Thread interrompida: " + e.getMessage());
         }
 
-        // ── 4. VENDA NORMAL DE OUTROS ASSENTOS ───────────────────────────
+        // aqui está tendo a venda normais de ingressos
         System.out.println("\n--- Vendas normais em outros assentos ---\n");
 
         // br.inatel.Assento VIP (linhas J ou K)
@@ -55,7 +54,7 @@ public class Main {
         Thread threadSessao2 = new Thread(terminalSessao2);
         threadSessao2.start();
 
-        // Tentativa com idade abaixo da classificação (deve lançar exceção)
+        // tentando comprar ingresso com a idade menor que a indicada nos filmes
         TerminalVendasThread terminalBloqueado = new TerminalVendasThread("Terminal-5", sessao2, "B3", 15, "INTEIRA");
         Thread threadBloqueado = new Thread(terminalBloqueado);
         threadBloqueado.start();
