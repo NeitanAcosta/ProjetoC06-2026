@@ -1,3 +1,5 @@
+package br.inatel;
+
 public class IngressoVIP extends Ingresso implements Validavel {
 
     public IngressoVIP() {

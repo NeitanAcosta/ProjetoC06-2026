@@ -1,3 +1,5 @@
+package br.inatel;
+
 public abstract class Ingresso {
 
     private String id;

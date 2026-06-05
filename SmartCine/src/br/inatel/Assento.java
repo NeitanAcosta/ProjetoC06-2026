@@ -1,3 +1,5 @@
+package br.inatel;
+
 public class Assento {
     private String id;
     private boolean ocupado;        // true = ocupado, false = livre

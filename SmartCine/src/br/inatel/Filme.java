@@ -1,3 +1,5 @@
+package br.inatel;
+
 public class Filme {
     //final para que seja atribuido apenas uma vez no construtor
     private final String titulo;

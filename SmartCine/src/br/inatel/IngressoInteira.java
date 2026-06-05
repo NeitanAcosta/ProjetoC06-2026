@@ -1,3 +1,5 @@
+package br.inatel;
+
 public class IngressoInteira extends Ingresso implements Validavel {
 
     public IngressoInteira() {
