@@ -1,4 +1,6 @@
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import br.inatel.com.smartcine.exception.AssentoIndisponivelException;
 
 public class Sessao {
     private Filme filme;
