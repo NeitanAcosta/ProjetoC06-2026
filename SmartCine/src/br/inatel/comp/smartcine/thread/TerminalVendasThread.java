@@ -56,7 +56,7 @@ public class TerminalVendasThread implements Runnable {
                 ((Validavel) ingresso).validarEntrada();
             }
 
-            System.out.printf("[%s] br.inatel.Ingresso %s | br.inatel.Assento: %s | Valor: R$ %.2f%n",
+            System.out.printf("[%s] Ingresso: %s | Assento: %s | Valor: R$ %.2f%n",
                     nomeTerminal, tipoIngresso, idAssento, ingresso.calcularValorFinal());
 
             dao.salvarVenda(ingresso);
