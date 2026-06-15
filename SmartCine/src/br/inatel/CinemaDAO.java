@@ -34,8 +34,6 @@ public class CinemaDAO {
                 // Aqui o polimorfismo acontece: o Java chamará a versão correta do método de cada classe!
                 stmt.setDouble(4, ingresso.calcularValorFinal()); 
                 
-                // Como as sessões ainda não estão totalmente integradas no banco pelos seus amigos,
-                // vamos deixar o ID da sessão como NULL por enquanto para o código não quebrar.
                 stmt.setNull(5, java.sql.Types.INTEGER); 
 
                 // 3. Executa o comando no MySQL
