@@ -26,17 +26,14 @@ public class CinemaDAO {
                     tipoIngresso = "VIP";
                 }
 
-                // 2. Preencher os parâmetros do INSERT com os dados do objeto
                 stmt.setString(1, ingresso.getId());
                 stmt.setString(2, ingresso.getAssento());
                 stmt.setString(3, tipoIngresso);
                 
-                // Aqui o polimorfismo acontece: o Java chamará a versão correta do método de cada classe!
                 stmt.setDouble(4, ingresso.calcularValorFinal()); 
                 
                 stmt.setNull(5, java.sql.Types.INTEGER); 
 
-                // 3. Executa o comando no MySQL
                 int linhasAfetadas = stmt.executeUpdate();
                 if (linhasAfetadas > 0) {
                     System.out.println("Venda do ingresso " + ingresso.getId() + " (" + tipoIngresso + ") salva no banco de dados com sucesso!");
