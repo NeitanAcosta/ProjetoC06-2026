@@ -7,13 +7,11 @@ import java.sql.SQLException;
 public class CinemaDAO {
     
     public CinemaDAO() {
-        // Construtor vazio como os seus amigos deixaram
     }
     
     public void salvarVenda(Ingresso ingresso) {
         String sql = "INSERT INTO ingressos (id, assento, tipo_ingresso, valor_final, sessao_id) VALUES (?, ?, ?, ?, ?)";
         
-        // Abre a conexão automaticamente usando o try-with-resources
         try (Connection conn = ConexaoBanco.conectar()) {
             if (conn == null) {
                 System.out.println("Não foi possível salvar a venda: Sem conexão com o banco.");
@@ -21,7 +19,6 @@ public class CinemaDAO {
             }
             
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                // 1. Descobrir qual o tipo da classe filha (Herança/Polimorfismo)
                 String tipoIngresso = "Inteira";
                 if (ingresso instanceof IngressoMeia) {
                     tipoIngresso = "Meia";
