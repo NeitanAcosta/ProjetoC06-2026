@@ -5,14 +5,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexaoBanco {
-    // Caminho do banco de dados, usuário e senha do seu MySQL local
     private static final String URL = "jdbc:mysql://localhost:3306/cinema_db?useTimezone=true&serverTimezone=UTC";
     private static final String USUARIO = "root"; 
     private static final String SENHA = "Guppyzera1!";
 
     public static Connection conectar() {
         try {
-            // Registra o driver do MySQL (importante para o Java antigo/padrão)
             Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection(URL, USUARIO, SENHA);
         } catch (ClassNotFoundException e) {
